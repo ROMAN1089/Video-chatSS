@@ -49,15 +49,20 @@
 }
 
 video {
-  height: 300px;
   border-radius: 1rem;
   margin: 0.5rem;
-  width: 400px;
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
   object-fit: cover;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
 }
+
+.video-element { border: 3px solid rgba(255,255,255,0.05); }
+.video-self { box-shadow: 0 0 0 3px rgba(47,128,236,0.25); }
+.video-remote { box-shadow: 0 0 0 3px rgba(41,204,151,0.25); }
 
 .options {
   padding: 1rem;
@@ -84,6 +89,7 @@ video {
   font-size: 1.2rem;
   width: 50px;
   margin: 0 0.5rem;
+  cursor: pointer;
 }
 
 .background__red {
@@ -153,9 +159,13 @@ video {
 }
 
 #video-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding: 0.5rem;
 }
 
 #showChat {
@@ -172,20 +182,72 @@ video {
 }
 
 @media (max-width: 700px) {
+  /* Layout: stack columns into a single column for phones */
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Hide the side chat by default on small screens; can be toggled by JS */
   .main__right {
     display: none;
   }
+
   .main__left {
     width: 100%;
-    flex: 1;
+    flex: 1 1 auto;
   }
 
+  .videos__group {
+    padding: 0.5rem;
+    display: block;
+  }
+
+  /* Make videos stack nicely and be touch-friendly */
   video {
     height: auto;
     width: 100%;
+    max-height: 40vh;
+    margin: 0.4rem 0;
   }
 
+  /* Make chat toggle visible on mobile */
   #showChat {
     display: flex;
+    position: fixed;
+    right: 12px;
+    bottom: 84px;
+    z-index: 30;
+    background: var(--primary-color);
+    color: var(--main-light);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+
+  /* Make control buttons easier to tap */
+  .options {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 12px;
+    z-index: 40;
+    background: transparent;
+    padding: 0.25rem;
+  }
+
+  .options__button {
+    height: 44px;
+    width: 44px;
+    font-size: 1rem;
+    margin: 0 0.4rem;
+  }
+
+  
+  .header__back {
+    display: block;
   }
 }

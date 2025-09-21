@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Chat — Rooms</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="index-header">
+      <div class="index-logo">
+        <h1>Video Chat</h1>
+        <p class="muted">Find or create a room to start a call</p>
+      </div>
+    </div>
+
+    <main class="index-main">
+      <div class="controls">
+        <button id="createRoom" class="btn btn-primary">Create new room</button>
+        <input id="search" class="search" placeholder="Search rooms by id..." />
+      </div>
+
+      <div id="roomsList" class="rooms-list"></div>
+    </main>
+
+    <script src="/index.js"></script>
+    <link rel="stylesheet" href="/index.css" />
+  </body>
+</html>
